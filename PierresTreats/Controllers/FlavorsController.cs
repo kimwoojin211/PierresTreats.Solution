@@ -38,11 +38,20 @@ namespace PierresTreats.Controllers
     [HttpPost]
     public async Task<ActionResult> Create(Flavor flavor, int TreatId)
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      flavor.User = currentUser;
-      _db.Flavors.Add(flavor);
-      _db.SaveChanges();
+      if (flavor.Type is null)
+      {
+        ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
+        ViewBag.ErrorMessage = "Please enter a flavor.";
+        return View();
+      }
+      else
+      {
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        flavor.User = currentUser;
+        _db.Flavors.Add(flavor);
+        _db.SaveChanges();
+      }
 
       if (TreatId != 0)
       {
@@ -69,15 +78,20 @@ namespace PierresTreats.Controllers
     }
     
     [HttpPost]
-    public ActionResult Edit(Flavor flavor, int TreatId)
+    public ActionResult Edit(Flavor flavor)
     {
-      if (TreatId != 0)
+      if (flavor.Type is null)
       {
-        _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = flavor.FlavorId, TreatId = TreatId });
+        ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
+        ViewBag.ErrorMessage = "Please enter a name.";
+        return View(flavor);
       }
-      _db.Entry(flavor).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Details", new { flavorId = flavor.FlavorId });
+      else
+      {
+        _db.Entry(flavor).State = EntityState.Modified;
+        _db.SaveChanges();
+        return RedirectToAction("Details", new { flavorId = flavor.FlavorId });
+      }
     }
 
     public ActionResult Delete(int flavorId)

@@ -4,6 +4,10 @@
 
 @model PierresTreats.Models.Treat
 
+@if(ViewBag.ErrorMessage != null)
+{
+  <h1 style="color:red">@ViewBag.ErrorMessage</h1>
+}
 <h4>Add a new treat:</h4>
 @using (Html.BeginForm())
 {

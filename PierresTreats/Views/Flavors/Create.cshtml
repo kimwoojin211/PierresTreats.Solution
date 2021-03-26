@@ -4,6 +4,10 @@
 
 @model PierresTreats.Models.Flavor
 
+@if(ViewBag.ErrorMessage != null)
+{
+  <h1 style="color:red">@ViewBag.ErrorMessage</h1>
+}
 <h4>Add a new flavor of treats:</h4>
 @using (Html.BeginForm())
 {
