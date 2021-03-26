@@ -9,6 +9,7 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.FlavorId)
+  @Html.HiddenFor(model => model.UserCreated)
 
   @Html.LabelFor(model => model.Type)
   @Html.EditorFor(model => model.Type)
@@ -17,5 +18,5 @@
 }
 
 <hr />
-<p>@Html.ActionLink($"Back to {Model.Type} Details.", "Details")</p>
+<p>@Html.ActionLink($"Back to {Model.Type} Details.", "Details", new { flavorId = Model.FlavorId })</p>
 <p>@Html.ActionLink("Show all flavors", "Index")</p>

@@ -17,5 +17,5 @@
 }
 
 <hr />
-<p>@Html.ActionLink($"Back to {Model.Name} Details.", "Details")</p>
+<p>@Html.ActionLink($"Back to {Model.Name} Details.", "Details", new { treatId = Model.TreatId })</p>
 <p>@Html.ActionLink("Show all treats", "Index")</p>

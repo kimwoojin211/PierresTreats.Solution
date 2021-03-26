@@ -48,6 +48,7 @@ namespace PierresTreats.Controllers
       {
         var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var currentUser = await _userManager.FindByIdAsync(userId);
+        flavor.UserCreated = currentUser.ToString();
         flavor.User = currentUser;
         _db.Flavors.Add(flavor);
         _db.SaveChanges();
@@ -61,6 +62,8 @@ namespace PierresTreats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    [AllowAnonymous]
     public ActionResult Details(int flavorId)
     {
       Flavor thisFlavor = _db.Flavors
@@ -73,12 +76,13 @@ namespace PierresTreats.Controllers
     public ActionResult Edit(int flavorId)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == flavorId);
+
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
       return View(thisFlavor);
     }
     
     [HttpPost]
-    public ActionResult Edit(Flavor flavor)
+    public async Task<ActionResult> Edit(Flavor flavor)
     {
       if (flavor.Type is null)
       {
@@ -88,6 +92,9 @@ namespace PierresTreats.Controllers
       }
       else
       {
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        flavor.User = currentUser;
         _db.Entry(flavor).State = EntityState.Modified;
         _db.SaveChanges();
         return RedirectToAction("Details", new { flavorId = flavor.FlavorId });

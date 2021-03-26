@@ -45,9 +45,9 @@ namespace PierresTreats.Controllers
       }
       else
       {
-        // gonna save this user value for displaying who created/last edited
         var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var currentUser = await _userManager.FindByIdAsync(userId);
+        treat.UserCreated = currentUser.ToString();
         treat.User = currentUser;
         _db.Treats.Add(treat);
         _db.SaveChanges();
@@ -61,6 +61,8 @@ namespace PierresTreats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    [AllowAnonymous]
     public ActionResult Details(int treatId)
     {
       Treat thisTreat = _db.Treats
@@ -69,6 +71,7 @@ namespace PierresTreats.Controllers
         .FirstOrDefault(treat => treat.TreatId == treatId);
       return View(thisTreat);
     }
+
     public ActionResult Edit(int treatId)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == treatId);

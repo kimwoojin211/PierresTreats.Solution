@@ -19,10 +19,13 @@ else
   @foreach(var join in Model.JoinEntities)
   {
     <li>@join.Treat.Name</li>
-    @using (Html.BeginForm("DeleteTreat", "Flavors"))
+    @if(User.Identity.IsAuthenticated)
     {
-      @Html.Hidden("joinId", @join.FlavorTreatId)
-      <input type="submit" value="Delete" />
+      @using (Html.BeginForm("DeleteTreat", "Flavors"))
+      {
+        @Html.Hidden("joinId", @join.FlavorTreatId)
+        <input type="submit" value="Delete" />
+      }
     }
   }
   </ul>
@@ -33,5 +36,14 @@ else
   <p>@Html.ActionLink("Edit this flavor", "Edit", new { flavorId = Model.FlavorId})</p>
   <p>@Html.ActionLink("Delete this flavor", "Delete", new { flavorId = Model.FlavorId})</p>
 }
+
 <p>@Html.ActionLink("Back to Flavor list", "Index")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+@if (User.Identity.IsAuthenticated)
+{
+  <div class="user">
+    <p>Entry created by: @Model.UserCreated</p>
+    <p>Entry last edited by: @Model.User.ToString()</p>
+  </div>
+}
