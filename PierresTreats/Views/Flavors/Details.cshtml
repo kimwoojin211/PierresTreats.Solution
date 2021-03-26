@@ -29,6 +29,7 @@ else
 }
 @if(User.Identity.IsAuthenticated)
 {
+  <p>@Html.ActionLink("Add a new treat", "AddTreat", new { flavorId = Model.FlavorId })</p>
   <p>@Html.ActionLink("Edit this flavor", "Edit", new { flavorId = Model.FlavorId})</p>
   <p>@Html.ActionLink("Delete this flavor", "Delete", new { flavorId = Model.FlavorId})</p>
 }

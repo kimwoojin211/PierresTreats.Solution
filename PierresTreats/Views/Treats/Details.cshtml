@@ -29,8 +29,9 @@ else
 }
 @if (User.Identity.IsAuthenticated)
 {
-  <p>@Html.ActionLink("Edit this treat", "Edit", new { treatId = Model.TreatId})</p>
-  <p>@Html.ActionLink("Delete this treat", "Delete", new { treatId = Model.TreatId})</p>
+  <p>@Html.ActionLink("Add a new flavor", "AddFlavor", new {  treatId = Model.TreatId })</p>
+  <p>@Html.ActionLink("Edit this treat", "Edit", new { treatId = Model.TreatId })</p>
+  <p>@Html.ActionLink("Delete this treat", "Delete", new { treatId = Model.TreatId })</p>
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
