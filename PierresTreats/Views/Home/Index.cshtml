@@ -8,6 +8,7 @@
 <h4>Here is a list of all of your treats and flavors.</h4>
 
 <div>
+  <h6>Treats</h6>
   @if(ViewBag.Treats.Count == 0)
   {
     <p>No treats yet entered.</p>
@@ -15,12 +16,13 @@
   <ul>
   @foreach(Treat treat in ViewBag.Treats)
   {
-    <li>@treat.Name</li>
+    <li>@Html.ActionLink($"{treat.Name}" , "Details" , "Treats", new { treatId = treat.TreatId })</li>
   }
   </ul>
 </div>
 
 <div>
+  <h6>Flavors</h6>
   @if(ViewBag.Flavors.Count == 0)
   {
     <p>No flavors yet entered.</p>
@@ -28,7 +30,7 @@
   <ul>
   @foreach(Flavor flavor in ViewBag.Flavors)
   {
-    <li>@flavor.Type</li>
+    <li>@Html.ActionLink($"{flavor.Type}" , "Details" , "Flavors", new { flavorId = flavor.FlavorId })</li>
   }
   </ul>
 </div>

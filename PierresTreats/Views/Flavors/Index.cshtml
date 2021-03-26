@@ -1,7 +1,6 @@
 @{
   Layout = "_Layout";
 }
-@using System.Security.Claims;
 @using PierresTreats.Models;
 @model List<PierresTreats.Models.Flavor>
 
@@ -15,7 +14,7 @@
 <ul>
   @foreach(Flavor flavor in Model)
   {
-    <li>@flavor.Type</li>
+    <li>@Html.ActionLink($"{flavor.Type}" , "Details" , new { flavorId = flavor.FlavorId })</li>
   }
 </ul>
 
