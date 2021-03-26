@@ -18,5 +18,8 @@
   }
 </ul>
 
-<p>@Html.ActionLink("Add new treat", "Create")</p>
+@if(User.Identity.IsAuthenticated)
+{
+  <p>@Html.ActionLink("Add new treat", "Create")</p>
+}
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
