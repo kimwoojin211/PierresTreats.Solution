@@ -1,0 +1,39 @@
+@{
+  Layout = "_Layout";
+}
+@using PierresTreats.Models;
+
+<h1>Welcome back Pierre!</h1>
+
+<h4>Here is a list of all of your treats and flavors.</h4>
+
+<div>
+  @if(ViewBag.Treats.Count == 0)
+  {
+    <p>No treats yet entered.</p>
+  }
+  <ul>
+  @foreach(Treat treat in ViewBag.Treats)
+  {
+    <li>@treat.Name</li>
+  }
+  </ul>
+</div>
+
+<div>
+  @if(ViewBag.Flavors.Count == 0)
+  {
+    <p>No flavors yet entered.</p>
+  }
+  <ul>
+  @foreach(Flavor flavor in ViewBag.Flavors)
+  {
+    <li>@flavor.Type</li>
+  }
+  </ul>
+</div>
+
+<p>@Html.ActionLink("See all treats", "Index", "Treats")</p>
+<p>@Html.ActionLink("See all flavors", "Index", "Flavors")</p>
+
+<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
