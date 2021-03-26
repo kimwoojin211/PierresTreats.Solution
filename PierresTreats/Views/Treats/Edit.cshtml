@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+@model PierresTreats.Models.Treat
+@using PierresTreats.Models
+
+<h1> Edit Treat: @Model.Name </h1>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  <input type="submit" value="Save" />
+}
+
+<hr />
+<p>@Html.ActionLink($"Back to {Model.Name} Details.", "Details")</p>
+<p>@Html.ActionLink("Show all treats", "Index")</p>
