@@ -24,6 +24,7 @@ _An MVC web application that utilizes a database with many-to-many relationships
 * Demonstrate user authentication with log in/out functionality.
 * Allow all users to read the database data.
 * Allow logged in users to create, update, and delete from the database.
+* Display to a logged-in user which user created and last edited certain pages.
 
 ## Setup/Installation Requirements
 <br>
@@ -55,6 +56,7 @@ For help on database configuration, please see [here](https://www.learnhowtoprog
 
 ## Known Bugs
 
+* None
 
 ## License
 

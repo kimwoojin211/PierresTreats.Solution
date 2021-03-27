@@ -12,5 +12,5 @@
   <input type="submit" value="Delete" />
 }
 
-@Html.ActionLink("Back to all treats", "Index")
-@Html.ActionLink($"Back to {Model.Name} details" , "Details" , new { treatId = Model.TreatId })
+<p>@Html.ActionLink("Back to all treats", "Index")</p>
+<p>@Html.ActionLink($"Back to {Model.Name} details" , "Details" , new { treatId = Model.TreatId })</p>
