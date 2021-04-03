@@ -31,7 +31,7 @@ _An MVC web application that utilizes a database with many-to-many relationships
 
 _Note: Make sure you have **.NET 5.0** installed. If not, please visit [this link](https://dotnet.microsoft.com/download/dotnet/5.0)_
 
-* _Clone this repository to your computer from [this repository](https://github.com/kimwoojin211/Factory.git)_
+* _Clone this repository to your computer from [this repository](https://github.com/kimwoojin211/PierresTreats.Solution)_
 * _In your terminal of choice, navigate to the PierresTreats directory_
 * _Create a file named "appsettings.json" in this directory_
 * _Add the following lines of code to your newly created "appsettings.json" file and save._
